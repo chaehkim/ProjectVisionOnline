@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Vision</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="./assets/js/gameplanlogin.js"></script>
+</head>
+
+<body id="backgroundImage">
+    <button type="button" class="btn" id="launchLoginModal">Login</button>
+    <h1>Project Vision</h1>
+
+    <div id="overlay" class="center">
+    </div>
+    <div id="introduction">
+        <p>Not enough time.</p>
+        <p>Not enough money.</p>
+        <p>Not enough people.</p>
+        <p>These are the challenges that all organizations across all industries face every day.</p>
+        <p>Project Vision will give leaders insight into their Projects and People to meet these daily challenges.</p>
+        <p>Login to learn more.</p>
+    </div>
+
+    <footer class="custom-footer">
+        <div class="col-md-12">
+            <ul class="color-black small">
+                <li class="list-unstyled footer-size">Project Team</li>
+                <li class="list-unstyled footer-team">Akhila Naik</li>
+                <li class="list-unstyled footer-team">Chae Kim</li>
+            </ul>
+        </div>
+    </footer>
+    <div>
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-dialog modal-content4">
+                <span class="close">&times;</span>
+                <div class="well well-sm">
+                    <form id="loginForm">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            <input class="form-control" type="text" id='username' placeholder="Username" />
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-lock"></i>
+                            </span>
+                            <input class="form-control" type="password" id='password' placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-def btn-block" id="loginButton">Login</button>
+                        </div>
+                        <div id="loginFailMessage"></div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

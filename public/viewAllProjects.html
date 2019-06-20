@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Vision</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/js/viewAllProjects.js"></script>
+</head>
+
+<body id="backgroundImage">
+    <h1>View All Projects</h1>
+    <div id="overlay4" class="center">
+    <br>
+    <div class="center-buttons">
+        <button type="button" class="btn btn-success btn-lg" id="getAllProjects">Get All Projects</button>
+        <button type="button" class="btn btn-success btn-lg" id="myBtn">Add a New Project</button>
+        <button type="button" class="btn btn-success btn-lg" id="backToDashboard">Back to Game Plan Dashboard</button>
+    </div>
+    <div>
+        <table class="table table-bordered table-condensed table-design3">
+            <thead></thead>
+            <tr>
+                <th scope="col" class="center">Project ID</th>
+                <th scope="col" class="center">Project Name</th>
+            </tr>
+            <tbody id="project-list">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal to Add a New Project -->
+    <div>
+        <div id="myModal" class="modal">
+            <div class="modal-content3">
+                <span class="close">&times;</span>
+                <h3>Add A New Project</h3>
+                <div class="form-group input-group">
+                    <input class="form-control" type="text" id='newProjectName' placeholder="Enter New Project Name" />
+                </div>
+                <div class="center-buttons">
+                    <button type="button" class="btn btn-info btn-lg" id="addNewProjectButton">Save Project</button>
+                </div>
+                <div id="newProjectMessage"></div>
+            </div>
+        </div>
+</body>
+<script>
+    // On page load, populate Project drop-down list
+    $(document).ready(function () {
+        $.ajax("/getAllProjects", {
+            type: "POST"
+        }).then(
+            function (result) {
+                $("#project-list").empty();
+                $("#newProjectMessage").empty();
+                for (i = 0; i < result.length; i++) {
+                    $("#project-list")
+                        .append($("<tr><td>" + result[i].id + "</td>" + "<td>" + result[i].project_name + "</td></tr>"))
+                };
+            }
+            );
+    });
+
+    $("#backToDashboard").click(function () {
+        window.location.href = 'dashboard.html';
+    });
+</script>
+
+</html>

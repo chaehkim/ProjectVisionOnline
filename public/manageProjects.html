@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Vision</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/js/manageProjects.js"></script>
+</head>
+
+<body id="backgroundImage">
+    <h1>Manage Project Allocations</h1>
+    <div>
+        <label class="format-label">Select Project: </label>
+    </div>
+    <select class="form-width select-format" id="chosenProject">
+        <option selected="selected" id="selectedproject"></option>
+    </select>
+    </div>
+    <button type="button" class="btn btn-success btn-lg button-font" id="getProjectAllocations">Get Project Allocations</button>
+    <button type="button" class="btn btn-success btn-lg button-font" id="getProjectCostsButton">Get Project Costs</button>
+    <button type="button" class="btn btn-success btn-lg button-font" id="getNewAllocationRecordModal">Add a New Allocation</button>
+    <button type="button" class="btn btn-success btn-lg button-font" id="backToDashboard">Back to Game Plan Dashboard</button>
+    </div>
+    <!-- Modal for Project Allocations -->
+    <div>
+        <div id="myModalProjectAllocations" class="modal">
+            <div class="modal-dialog modal-content1">
+                <span class="close1">&times;</span>
+                <h3>Current Project Allocations</h3>
+                <table class="table table-bordered table-condensed">
+                    <thead></thead>
+                    <tr>
+                        <th scope="col" class="center">Name</th>
+                        <th scope="col" class="center">Role</th>
+                        <th scope="col" class="center">Location</th>
+                        <th scope="col" class="center">Run Rate</th>
+                        <th scope="col" class="center">Jan</th>
+                        <th scope="col" class="center">Feb</th>
+                        <th scope="col" class="center">Mar</th>
+                        <th scope="col" class="center">Apr</th>
+                        <th scope="col" class="center">May</th>
+                        <th scope="col" class="center">Jun</th>
+                        <th scope="col" class="center">Jul</th>
+                        <th scope="col" class="center">Aug</th>
+                        <th scope="col" class="center">Sep</th>
+                        <th scope="col" class="center">Oct</th>
+                        <th scope="col" class="center">Nov</th>
+                        <th scope="col" class="center">Dec</th>
+                        <th scope="col" class="center">FTE</th>
+                    </tr>
+                    <tbody id="project-allocations" class="right"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Project Costs -->
+    <div>
+        <div id="myModalProjectCosts" class="modal">
+            <div class="modal-content1">
+                <span class="close2">&times;</span>
+                <h3>Current Project Costs</h3>
+                <table class="table table-bordered table-condensed">
+                    <thead class="table-title"></thead>
+                    <tr>
+                        <th scope="col" class="center">Name</th>
+                        <th scope="col" class="center">Role</th>
+                        <th scope="col" class="center">Location</th>
+                        <th scope="col" class="center">Run Rate</th>
+                        <th scope="col" class="center">Jan</th>
+                        <th scope="col" class="center">Feb</th>
+                        <th scope="col" class="center">Mar</th>
+                        <th scope="col" class="center">Apr</th>
+                        <th scope="col" class="center">May</th>
+                        <th scope="col" class="center">Jun</th>
+                        <th scope="col" class="center">Jul</th>
+                        <th scope="col" class="center">Aug</th>
+                        <th scope="col" class="center">Sep</th>
+                        <th scope="col" class="center">Oct</th>
+                        <th scope="col" class="center">Nov</th>
+                        <th scope="col" class="center">Dec</th>
+                        <th scope="col" class="center">Cost</th>
+                    </tr>
+                    <tbody id="project-costs" class="right">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div></div>
+
+        <!-- Modal for Add New Allocation Record -->
+        <div>
+            <div id="myModalAddAllocationRecord" class="modal">
+                <div class="modal-content">
+                    <span class="close3">&times;</span>
+                    <h3>Add A New Project Allocation</h3>
+                    <form>
+                        <div>
+                            <div>
+                                <label id="resourceNamelabel">Resource Name :</label>
+                                <select class="form-control form-width" id="addResourceName">
+                                    <option selected="selected" id="resourceList">Select</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div>
+                                <table>
+
+                                    <th scope="col">January</th>
+                                    <th scope="col">February</th>
+                                    <th scope="col">March</th>
+                                    <th scope="col">April</th>
+                                    <th scope="col">May</th>
+                                    <th scope="col">June</th>
+                                    <th scope="col">July</th>
+                                    <th scope="col">August</th>
+                                    <th scope="col">September</th>
+                                    <th scope="col">October</th>
+                                    <th scope="col">November</hd>
+                                        <th scope="col">December</th>
+
+                                        <tr>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addJanuary" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addFebruary" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addMarch" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addApril" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addMay" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addJune" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addJuly" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addAugust" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addSeptember" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addOctober" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addNovember" value="0" />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-width-narrow" type="text" id="addDecember" value="0" />
+                                            </td>
+                                        </tr>
+                                </table>
+                            </div>
+                            <br>
+                            <div class="center-buttons">
+                                <button type="button" class="btn btn-success btn-lg" id="addNewAllocationRecord">Save New Allocation</button>
+                            </div>
+                            <div id="newAllocationRecordMessage" class="center-buttons"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+</body>
+<script>
+    // On Page Load, Display All Projects
+    $(document).ready(function () {
+        $.ajax("/getAllProjects", {
+            type: "POST"
+        }).then(
+            function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var opt = new Option(result[i].project_name);
+                    $("#chosenProject").append(opt);
+                }
+            });
+        $("#backToDashboard").click(function () {
+            window.location.href = 'dashboard.html';
+        });
+    });
+    // Populate Resources drop-down for Modal
+    $(document).ready(function () {
+        $.ajax("/getAllResources", {
+            type: "POST"
+        }).then(
+            function (result) {
+                for (i = 0; i < result.length; i++) {
+                    var opt = new Option(result[i].resource_name);
+                    $("#addResourceName").append(opt);
+                };
+            }
+            );
+    });
+</script>
+
+</html>

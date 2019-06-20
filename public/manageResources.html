@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Vision</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="./assets/js/manageResources.js"></script>
+</head>
+
+<body id="backgroundImage">
+    <h1>Manage Resources</h1>
+    <div id="overlay3" class="center">
+        <div class="center-buttons">
+            <button type="button" class="btn btn-success btn-lg" id="getAllResources">Get All Resources</button>
+            <button type="button" class="btn btn-success btn-lg" id="myBtn">Add a New Resource</button>
+            <button type="button" class="btn btn-success btn-lg" id="backToDashboard">Back to Game Plan Dashboard</button>
+        </div>
+        <br>
+        <div>
+            <table id="resourceList" class="table table-bordered table-condensed table-design">
+                <thead></thead>
+                <tr>
+                    <th scope="col" class="center">Name</th>
+                    <th scope="col" class="center">Role</th>
+                    <th scope="col" class="center">Locations</th>
+                    <th scope="col" class="center">Run Rate</th>
+                </tr>
+                <tbody id="resource-list"></tbody>
+        </div>
+        </table>
+    </div>
+    <!-- Modal to Add a New Resource -->
+    <div>
+        <div id="myModal" class="modal">
+            <div class="modal-content3">
+                <span class="close">&times;</span>
+                <h3>Add A New Resource</h3>
+                <div class="form-group input-group">
+                    <div>
+                        <label>Resource Name:</label>
+                        <input class="form-control" type="text" id='newResourceName' />
+                    </div>
+                    <div>
+                        <label>Role:</label>
+                        <select class="form-control" type="text" id='newResourceRole' />
+                        <option value="" disabled selected></option>
+                        <option>PM</option>
+                        <option>BA</option>
+                        <option>DEV</option>
+                        <option>QA</option>
+                        <option>UAT</option>
+                        <option>REL</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Location: </label>
+                        <select class="form-control" type="text" id='newResourceLocation' />
+                        <option value="" disabled selected></option>
+                        <option>NYK</option>
+                        <option>LDN</option>
+                        <option>PRG</option>
+                        <option>PUN</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Run Rate: </label>
+                        <select class="form-control" type="text" id='newResourceRunrate' />
+                        <option value="" disabled selected></option>
+                        <option>120000</option>
+                        <option>110000</option>
+                        <option>80000</option>
+                        <option>45000</option>
+                        <option>40000</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="center-buttons">
+                    <button type="button" class="btn btn-info btn-lg" id="addNewResourceButton">Save New Resource</button>
+                </div>
+                <div id="newResourceMessage"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // On page load, display all resources
+    $(document).ready(function () {
+        $.ajax("/getAllResources", {
+            type: "POST"
+        }).then(
+            function (result) {
+                $("#resource-list").empty();
+                $("#newResourceMessage").empty();
+                for (i = 0; i < result.length; i++) {
+                    $("#resource-list").append($("<tr><td>" + result[i].resource_name + "</td>" + "<td>" + result[i].resource_role + "</td>" + "<td>" + result[i].resource_location + "</td>" + "<td class=align-right>" + numeral(result[i].resource_runrate).format('$0,0.00') + "</td></tr>"));
+                };
+            }
+            );
+    });
+    $("#backToDashboard").click(function () {
+        window.location.href = 'dashboard.html';
+    });
+</script>
+
+</html>
